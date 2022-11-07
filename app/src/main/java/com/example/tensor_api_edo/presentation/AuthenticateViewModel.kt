@@ -1,4 +1,4 @@
-package com.example.tensor_api_edo
+package com.example.tensor_api_edo.presentation
 
 import android.app.Application
 import android.util.Log
@@ -6,22 +6,21 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.tensor_api_edo.data.ApiEdo
-import com.example.tensor_api_edo.data.Authenticate.AnswerAuthenticate
 import com.example.tensor_api_edo.data.Authenticate.qest.Params
-import com.example.tensor_api_edo.data.Authenticate.qest.qestionAuthenticate
+import com.example.tensor_api_edo.data.Authenticate.qest.QestionAuthenticate
 import com.example.tensor_api_edo.data.Authenticate.qest.Параметр
+import com.example.tensor_api_edo.domain.SbisSetting
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(application : Application) : AndroidViewModel(application) {
+class AuthenticateViewModel(application : Application) : AndroidViewModel(application) {
 
     private val compositeDisposable = CompositeDisposable()
 
-
-    private val _selected = MutableLiveData<AnswerAuthenticate>()
-    val selected: LiveData<AnswerAuthenticate>
-        get() = _selected
+    private val _isSuccess = MutableLiveData<Boolean>()
+    val isSuccess: LiveData<Boolean>
+        get() = _isSuccess
 
 
     override fun onCleared() {
@@ -29,31 +28,27 @@ class MainViewModel(application : Application) : AndroidViewModel(application) {
         super.onCleared()
     }
 
-    fun fetchList(filmApi: ApiEdo?){
+
+    fun authenticate(EdoApi: ApiEdo?,login : String, password : String){
         Log.i("MyResult","fetchList")
-        filmApi?.let { filmApi ->
-            val disposable =filmApi.Authenticate(createParams())
+        EdoApi?.let { EdoApi ->
+            val disposable =EdoApi.Authenticate(createParams(login,password))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-
+                    SbisSetting.idSession = it.result
                     Log.e("TAG", it.result)
-                    _selected.postValue(it)
-                    Log.i("MyResult","good")
+                    _isSuccess.postValue(true)
                 },{
-
+                    _isSuccess.postValue(false)
                     Log.i("MyResult",it.toString())
                 })
         }
 
     }
 
-    fun createParams(): qestionAuthenticate{
-        val параметр = Параметр("AdminTest2","AdminTest2")
-        val params = Params(параметр)
-        val qest = qestionAuthenticate(params = params)
-        Log.i("MyResult",qest.toString())
-        return qest
+    fun createParams(login : String, password : String): QestionAuthenticate{
+        return QestionAuthenticate(params = Params(Параметр(login,password)))
     }
 
 

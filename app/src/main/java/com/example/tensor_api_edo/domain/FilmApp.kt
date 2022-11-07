@@ -1,4 +1,4 @@
-package com.example.tensor_api_edo
+package com.example.tensor_api_edo.domain
 
 import android.app.Application
 import com.example.tensor_api_edo.data.ApiEdo
