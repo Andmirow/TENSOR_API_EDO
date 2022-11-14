@@ -41,9 +41,9 @@ class AuthenticateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var login = binding.etLogin.editText?.text.toString()
-        var password = binding.etPassword.editText?.text.toString()
         binding.btAuthenticate.setOnClickListener {
+            var login = binding.etLogin.editText?.text.toString()
+            var password = binding.etPassword.editText?.text.toString()
             viewModel.authenticate((activity?.application as FilmApp).apiEdo,login,password)
         }
 

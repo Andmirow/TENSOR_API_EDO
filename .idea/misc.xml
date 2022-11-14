@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/AndroidProject/TENSOR_API_EDO/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/AndroidProject/TENSOR_API_EDO/app/src/main/res/layout/authenticate_form.xml" value="0.358695652173913" />
+        <entry key="..\:/AndroidProject/TENSOR_API_EDO/app/src/main/res/layout/document_card.xml" value="0.5" />
         <entry key="..\:/AndroidProject/TENSOR_API_EDO/app/src/main/res/layout/fragment_authenticate.xml" value="0.358695652173913" />
         <entry key="..\:/AndroidProject/TENSOR_API_EDO/app/src/main/res/layout/list_comand.xml" value="0.24166666666666667" />
+        <entry key="..\:/AndroidProject/TENSOR_API_EDO/app/src/main/res/layout/list_documents.xml" value="0.358695652173913" />
       </map>
     </option>
   </component>

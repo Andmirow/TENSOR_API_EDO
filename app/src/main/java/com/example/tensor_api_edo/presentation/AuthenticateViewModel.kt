@@ -6,9 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.tensor_api_edo.data.ApiEdo
-import com.example.tensor_api_edo.data.Authenticate.qest.Params
-import com.example.tensor_api_edo.data.Authenticate.qest.QestionAuthenticate
+import com.example.tensor_api_edo.data.Authenticate.qest.AuthenticateParams
 import com.example.tensor_api_edo.data.Authenticate.qest.Параметр
+import com.example.tensor_api_edo.data.TensorQuery
 import com.example.tensor_api_edo.domain.SbisSetting
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -47,8 +47,9 @@ class AuthenticateViewModel(application : Application) : AndroidViewModel(applic
 
     }
 
-    fun createParams(login : String, password : String): QestionAuthenticate{
-        return QestionAuthenticate(params = Params(Параметр(login,password)))
+    fun createParams(login : String, password : String): TensorQuery {
+
+        return TensorQuery(method = "СБИС.Аутентифицировать", params = AuthenticateParams(Параметр(login,password)))
     }
 
 
