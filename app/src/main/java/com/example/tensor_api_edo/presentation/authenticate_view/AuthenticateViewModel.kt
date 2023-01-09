@@ -1,4 +1,4 @@
-package com.example.tensor_api_edo.presentation
+package com.example.tensor_api_edo.presentation.authenticate_view
 
 import android.app.Application
 import android.util.Log
@@ -9,7 +9,6 @@ import com.example.tensor_api_edo.data.ApiEdo
 import com.example.tensor_api_edo.data.Authenticate.qest.AuthenticateParams
 import com.example.tensor_api_edo.data.Authenticate.qest.Параметр
 import com.example.tensor_api_edo.data.TensorQuery
-import com.example.tensor_api_edo.domain.SbisSetting
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -36,7 +35,7 @@ class AuthenticateViewModel(application : Application) : AndroidViewModel(applic
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    SbisSetting.idSession = it.result
+                    //SbisSetting.idSession = it.result
                     Log.e("TAG", it.result)
                     _isSuccess.postValue(true)
                 },{
@@ -48,7 +47,6 @@ class AuthenticateViewModel(application : Application) : AndroidViewModel(applic
     }
 
     fun createParams(login : String, password : String): TensorQuery {
-
         return TensorQuery(method = "СБИС.Аутентифицировать", params = AuthenticateParams(Параметр(login,password)))
     }
 

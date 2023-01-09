@@ -1,4 +1,4 @@
-package com.example.tensor_api_edo.presentation
+package com.example.tensor_api_edo.presentation.authenticate_view
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.tensor_api_edo.databinding.AuthenticateFormBinding
 import com.example.tensor_api_edo.domain.FilmApp
+import com.example.tensor_api_edo.presentation.HowToCloseFragment
 
 
 class AuthenticateFragment : Fragment() {

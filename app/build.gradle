@@ -58,6 +58,10 @@ dependencies {
     implementation('com.stanfy:gson-xml-java:0.1.+') {
         exclude group: 'xmlpull', module: 'xmlpull'
     }
+    implementation ("com.github.bumptech.glide:glide:4.11.0") {
+        exclude group: "com.android.support"
+    }
+
 
 
     implementation 'androidx.core:core-ktx:1.7.0'

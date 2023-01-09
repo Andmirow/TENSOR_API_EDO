@@ -9,10 +9,18 @@ class MapperXML {
     val encodedString = "fdfgdrg"
 
 
+
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     val decodedBytes = Base64.getDecoder().decode(encodedString)
 
     @RequiresApi(Build.VERSION_CODES.O)
     val decodedString = String(decodedBytes)
+
+
+
+
+
 
 }

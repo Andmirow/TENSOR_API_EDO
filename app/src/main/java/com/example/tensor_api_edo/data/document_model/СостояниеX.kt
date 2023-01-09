@@ -1,5 +1,8 @@
 package com.example.tensor_api_edo.data.document_model
 
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class СостояниеX(
     val Код: String,
     val Название: String,
