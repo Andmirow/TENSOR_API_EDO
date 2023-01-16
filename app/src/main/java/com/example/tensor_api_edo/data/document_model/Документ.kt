@@ -2,7 +2,7 @@ package com.example.tensor_api_edo.data.document_model
 
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
+
 data class Документ(
     val Вложение: List<Вложение>,
     val Дата: String,

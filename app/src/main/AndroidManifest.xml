@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".domain.FilmApp"
+        android:name=".domain.MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,9 +17,7 @@
         android:theme="@style/Theme.TENSOR_API_EDO"
         tools:targetApi="31" >
         <activity
-            android:name=".presentation.documents_view.DocumentsList"/>
-        <activity
-            android:name=".presentation.authenticate_view.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.ListComand" />
     </application>
 
 </manifest>
