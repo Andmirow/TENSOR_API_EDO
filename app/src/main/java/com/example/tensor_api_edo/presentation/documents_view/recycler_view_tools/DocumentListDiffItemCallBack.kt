@@ -2,15 +2,16 @@ package com.example.tensor_api_edo.presentation.documents_view.recycler_view_too
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.tensor_api_edo.data.document_model.Документ
+import com.example.tensor_api_edo.domain.Document
 
 
-class DocumentListDiffItemCallBack : DiffUtil.ItemCallback<Документ>() {
+class DocumentListDiffItemCallBack : DiffUtil.ItemCallback<Document>() {
 
-    override fun areItemsTheSame(oldItem: Документ, newItem: Документ): Boolean {
-        return oldItem.Идентификатор == newItem.Идентификатор && oldItem.Название == newItem.Название
+    override fun areItemsTheSame(oldItem: Document, newItem: Document): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Документ, newItem: Документ): Boolean {
+    override fun areContentsTheSame(oldItem: Document, newItem: Document): Boolean {
         return oldItem == newItem
     }
 }

@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.tensor_api_edo.data.document_model.Документ
 import com.example.tensor_api_edo.databinding.DocumentCardBinding
+import com.example.tensor_api_edo.domain.Document
 
 
-class FilmAdapter() : ListAdapter<Документ, DocumentViewHolder>(DocumentListDiffItemCallBack()) {
+class DocumentAdapter() : ListAdapter<Document, DocumentViewHolder>(DocumentListDiffItemCallBack()) {
 
     lateinit var binding : DocumentCardBinding
 
@@ -19,4 +20,5 @@ class FilmAdapter() : ListAdapter<Документ, DocumentViewHolder>(Document
     override fun onBindViewHolder(holder: DocumentViewHolder, position: Int) {
 
     }
+
 }
