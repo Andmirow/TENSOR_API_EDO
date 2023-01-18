@@ -8,16 +8,26 @@ import androidx.lifecycle.MutableLiveData
 import com.example.tensor_api_edo.data.ApiEdo
 import com.example.tensor_api_edo.data.FilterModel
 import com.example.tensor_api_edo.data.TensorQuery
+import com.example.tensor_api_edo.data.document_model.Result
 import com.example.tensor_api_edo.data.document_model.Фильтр
+import com.example.tensor_api_edo.di.DaggerEdoComponent
 import com.example.tensor_api_edo.domain.Document
+import com.example.tensor_api_edo.domain.MapperDocuments
 import com.example.tensor_api_edo.domain.SbisSetting
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class DocumentListViewModel(application : Application) : AndroidViewModel(application) {
 
-    private val compositeDisposable = CompositeDisposable()
+
+    @Inject
+    lateinit var compositeDisposable : CompositeDisposable
+
+    init {
+        DaggerEdoComponent.builder().build().inject(this)
+    }
 
 
     private val _selected = MutableLiveData<List<Document>>()
@@ -38,8 +48,12 @@ class DocumentListViewModel(application : Application) : AndroidViewModel(applic
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    val res = it.result
-                    Log.i("MyResult",it.toString())
+                    Log.i("Result1",it.toString())
+                    val res = it.result as Result
+                    Log.i("Result1",res.toString())
+                    val listDoc = MapperDocuments.getListDocumentFromReestr(res.Реестр)
+                    Log.i("Result1",listDoc.toString())
+                    _selected.postValue(listDoc)
                 },{
                     Log.i("MyResult",it.toString())
                 })

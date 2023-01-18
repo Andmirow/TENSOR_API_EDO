@@ -9,14 +9,23 @@ import com.example.tensor_api_edo.data.ApiEdo
 import com.example.tensor_api_edo.data.Authenticate.qest.AuthenticateParams
 import com.example.tensor_api_edo.data.Authenticate.qest.Параметр
 import com.example.tensor_api_edo.data.TensorQuery
+import com.example.tensor_api_edo.di.DaggerEdoComponent
 import com.example.tensor_api_edo.domain.SbisSetting
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class AuthenticateViewModel(application : Application) : AndroidViewModel(application) {
 
-    private val compositeDisposable = CompositeDisposable()
+
+
+    @Inject
+    lateinit var compositeDisposable : CompositeDisposable
+
+    init {
+        DaggerEdoComponent.builder().build().inject(this)
+    }
 
     private val _isSuccess = MutableLiveData<Boolean>()
     val isSuccess: LiveData<Boolean>
@@ -36,8 +45,8 @@ class AuthenticateViewModel(application : Application) : AndroidViewModel(applic
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    SbisSetting.idSession = it.result
-                    Log.e("TAG", it.result)
+                    SbisSetting.idSession = it.result.toString()
+                    Log.e("TAG", it.result.toString())
                     _isSuccess.postValue(true)
                 },{
                     _isSuccess.postValue(false)
