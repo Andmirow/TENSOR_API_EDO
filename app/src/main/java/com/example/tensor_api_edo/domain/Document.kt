@@ -10,5 +10,9 @@ data class Document(
     val Subtype: String,
     val HTML: String,
     val Sum: String,
-    val Type: String
+    val Type: String,
+
+    val data : String,
+    val status : String,
+    val partner : String
 )

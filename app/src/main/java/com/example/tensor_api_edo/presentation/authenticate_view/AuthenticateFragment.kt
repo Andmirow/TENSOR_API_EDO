@@ -45,6 +45,9 @@ class AuthenticateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        howToCloseFragment.closeAndOpenNewFragment(ListComandFragment.newInstance())
+
         binding.btAuthenticate.setOnClickListener {
             var login = binding.etLogin.editText?.text.toString()
             var password = binding.etPassword.editText?.text.toString()

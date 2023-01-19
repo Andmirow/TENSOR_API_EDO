@@ -1,6 +1,5 @@
 package com.example.tensor_api_edo.data
 
-import com.example.tensor_api_edo.domain.SbisSetting
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.Header
@@ -11,12 +10,12 @@ interface ApiEdo {
 
     @POST("auth/service/")
     @Headers("Content-Type: application/json-rpc;charset=utf-8")
-    fun Authenticate(@Body body : TensorQuery): Single<AnswerQuery>
+    fun Authenticate(@Body body : TensorQuery): Single<AnswerQueryAuthenticate>
 
 
     @POST("service/?srv=1/")
     @Headers("Content-Type: application/json-rpc;charset=utf-8")
-    fun getDocumentListForEvent(@Body body : TensorQuery, @Header("X-SBISSessionID") token : String): Single<AnswerQuery>
+    fun getDocumentListForEvent(@Body body : TensorQuery, @Header("X-SBISSessionID") token : String): Single<AnswerQueryListDocument>
 
 
 

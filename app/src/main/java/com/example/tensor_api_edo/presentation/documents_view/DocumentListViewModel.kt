@@ -9,11 +9,13 @@ import com.example.tensor_api_edo.data.ApiEdo
 import com.example.tensor_api_edo.data.FilterModel
 import com.example.tensor_api_edo.data.TensorQuery
 import com.example.tensor_api_edo.data.document_model.Result
+import com.example.tensor_api_edo.data.document_model.Реестр
 import com.example.tensor_api_edo.data.document_model.Фильтр
 import com.example.tensor_api_edo.di.DaggerEdoComponent
 import com.example.tensor_api_edo.domain.Document
 import com.example.tensor_api_edo.domain.MapperDocuments
 import com.example.tensor_api_edo.domain.SbisSetting
+import com.google.gson.internal.LinkedTreeMap
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -49,10 +51,8 @@ class DocumentListViewModel(application : Application) : AndroidViewModel(applic
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     Log.i("Result1",it.toString())
-                    val res = it.result as Result
-                    Log.i("Result1",res.toString())
-                    val listDoc = MapperDocuments.getListDocumentFromReestr(res.Реестр)
-                    Log.i("Result1",listDoc.toString())
+                    val res = it.result.Реестр
+                    val listDoc = MapperDocuments.getListDocumentFromReestr(res)
                     _selected.postValue(listDoc)
                 },{
                     Log.i("MyResult",it.toString())
@@ -60,7 +60,7 @@ class DocumentListViewModel(application : Application) : AndroidViewModel(applic
         }
     }
 
-    fun createParams(data : String, RegistryType : String): TensorQuery {
+    private fun createParams(data : String, RegistryType : String): TensorQuery {
         return TensorQuery(method = "СБИС.СписокДокументовПоСобытиям", params = FilterModel(Фильтр = Фильтр(data,RegistryType)))
     }
 

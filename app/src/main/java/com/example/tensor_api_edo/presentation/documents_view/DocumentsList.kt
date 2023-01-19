@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tensor_api_edo.data.ApiEdo
 import com.example.tensor_api_edo.databinding.ListDocumentsBinding
+import com.example.tensor_api_edo.domain.Document
 import com.example.tensor_api_edo.domain.MyApp
 import com.example.tensor_api_edo.presentation.FragmentControl
 import com.example.tensor_api_edo.presentation.authenticate_view.AuthenticateViewModel
@@ -62,7 +63,7 @@ class DocumentsList : Fragment() {
         viewModel.getListDocument((activity?.application as MyApp).apiEdo,"",typeDocument!!)
         val recycler = binding.rvListDoc
 
-        val adapter = DocumentAdapter()
+        val adapter = DocumentAdapter(this::openDocunemt)
         recycler.adapter = adapter
 
         viewModel.selected.observe(viewLifecycleOwner) {
@@ -70,6 +71,9 @@ class DocumentsList : Fragment() {
         }
     }
 
+    private fun openDocunemt(document: Document){
+        //howToCloseFragment.openNewFragment(DocumentInfoFragment.newInstance(document))
+    }
 
     companion object {
 
