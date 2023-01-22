@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.tensor_api_edo.R
 import com.example.tensor_api_edo.databinding.AuthenticateFormBinding
 import com.example.tensor_api_edo.domain.MyApp
 import com.example.tensor_api_edo.domain.SbisSetting
@@ -26,7 +28,7 @@ class AuthenticateFragment : Fragment() {
         if (context is FragmentControl) {
             howToCloseFragment = context
         } else {
-            throw RuntimeException("Activity must implement OnEditingFinishedListener")
+            throw RuntimeException("Activity must implement FragmentControl")
         }
     }
 
@@ -46,7 +48,7 @@ class AuthenticateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        howToCloseFragment.closeAndOpenNewFragment(ListComandFragment.newInstance())
+        //howToCloseFragment.closeAndOpenNewFragment(ListComandFragment.newInstance()) //АА если есть активная сессия
 
         binding.btAuthenticate.setOnClickListener {
             var login = binding.etLogin.editText?.text.toString()
@@ -57,7 +59,8 @@ class AuthenticateFragment : Fragment() {
         viewModel.isSuccess.observe(viewLifecycleOwner) {
             if (it) {
                 SbisSetting.isAuthenticate = true
-                howToCloseFragment.closeAndOpenNewFragment(ListComandFragment.newInstance())
+                //howToCloseFragment.closeAndOpenNewFragment(ListComandFragment.newInstance())
+                findNavController().navigate(R.id.action_authenticateFragment_to_listComandFragment)
             }
         }
     }

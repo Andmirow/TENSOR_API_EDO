@@ -1,7 +1,10 @@
 package com.example.tensor_api_edo.domain
 
-import com.example.tensor_api_edo.data.document_model.Файл
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Document(
     val id : String,
     val name : String,
@@ -15,4 +18,4 @@ data class Document(
     val data : String,
     val status : String,
     val partner : String
-)
+) : Parcelable

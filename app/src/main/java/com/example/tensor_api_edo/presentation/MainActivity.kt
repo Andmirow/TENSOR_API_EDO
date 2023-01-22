@@ -21,9 +21,6 @@ class MainActivity : AppCompatActivity(), FragmentControl {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if(!SbisSetting.isAuthenticate){
-            openNewFragment(AuthenticateFragment.newInstance())
-        }
     }
 
 
