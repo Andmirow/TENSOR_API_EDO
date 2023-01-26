@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.tensor_api_edo.databinding.ListDocumentsBinding
 import com.example.tensor_api_edo.domain.Document
@@ -67,7 +68,7 @@ class DocumentsList : Fragment() {
     }
 
     private fun openDocunemt(document: Document){
-        howToCloseFragment.openNewFragment(DocumentInfoFragment.newInstance(document))
+        findNavController().navigate(DocumentsListDirections.actionDocumentsListToDocumentInfoFragment(document))
     }
 
     companion object {

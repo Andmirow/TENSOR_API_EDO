@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.tensor_api_edo.R
 import com.example.tensor_api_edo.databinding.ListComandBinding
-import com.example.tensor_api_edo.presentation.documents_view.DocumentsList
-import com.example.tensor_api_edo.presentation.documents_view.DocumentsList.Companion.TYPE_DOCUMENT
 
 class ListComandFragment : Fragment() {
 

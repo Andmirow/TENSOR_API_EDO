@@ -38,5 +38,9 @@
     <fragment
         android:id="@+id/documentInfoFragment"
         android:name="com.example.tensor_api_edo.presentation.documents_view.DocumentInfoFragment"
-        android:label="DocumentInfoFragment" />
+        android:label="DocumentInfoFragment" >
+        <argument
+            android:name="document"
+            app:argType="com.example.tensor_api_edo.domain.Document" />
+    </fragment>
 </navigation>

@@ -1,9 +1,9 @@
 package com.example.tensor_api_edo.di
 
 
-import com.example.tensor_api_edo.data.ApiEdo
 import com.example.tensor_api_edo.domain.MyApp
 import com.example.tensor_api_edo.presentation.authenticate_view.AuthenticateViewModel
+import com.example.tensor_api_edo.presentation.documents_view.DocumentInfoViewModel
 import com.example.tensor_api_edo.presentation.documents_view.DocumentListViewModel
 import dagger.Component
 
@@ -16,5 +16,7 @@ interface EdoComponent {
     fun inject(viewModel: AuthenticateViewModel)
 
     fun inject(viewModel: DocumentListViewModel)
+
+    fun inject(viewModel: DocumentInfoViewModel)
 
 }
