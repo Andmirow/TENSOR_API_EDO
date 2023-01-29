@@ -1,6 +1,8 @@
 package com.example.tensor_api_edo.data
 
 import io.reactivex.Single
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiEdo {
@@ -15,13 +17,10 @@ interface ApiEdo {
     fun getDocumentListForEvent(@Body body : TensorQuery, @Header("X-SBISSessionID") token : String): Single<AnswerQueryListDocument>
 
 
-
-
     @GET
-    //@Headers("Content-Type: application/json-rpc;charset=windows-1251","Host: disk.sbis.ru")
-    fun getFile(@Url url : String, @Header("X-SBISSessionID")token : String) : Single<String>
-
-
+    //@Headers("Content-Type: charset=windows-1251 Accept:*/*")
+    @Headers("Content-Type: application/json-rpc;charset=windows-1251")
+    fun getFile(@Url url : String, @Header("X-SBISSessionID")token : String) : Call<ResponseBody>// Single<String>
 
 
 }

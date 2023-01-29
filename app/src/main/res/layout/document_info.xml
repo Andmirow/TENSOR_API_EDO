@@ -7,12 +7,12 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
-        android:id="@+id/imageView"
+    <WebView
+        android:id="@+id/web_view_doc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="96dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_height="match_parent">
+    </WebView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

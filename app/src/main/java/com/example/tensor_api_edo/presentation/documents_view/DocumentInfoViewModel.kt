@@ -11,6 +11,9 @@ import com.example.tensor_api_edo.domain.SbisSetting
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Response
 import java.io.File
 import javax.inject.Inject
 
@@ -18,43 +21,29 @@ import javax.inject.Inject
 class DocumentInfoViewModel(application : Application) : AndroidViewModel(application) {
 
 
-    @Inject
-    lateinit var compositeDisposable : CompositeDisposable
-
-    init {
-        DaggerEdoComponent.builder().build().inject(this)
-    }
+    private val _isSuccess = MutableLiveData<ByteArray>()
+    val isSuccess: LiveData<ByteArray>
+        get() = _isSuccess
 
 
-    private val _selected = MutableLiveData<String>()
-    val selected: LiveData<String>
-        get() = _selected
+    fun getHtml(edoApi: ApiEdo, html_linck: String){
+        val res = edoApi.getFile(html_linck,SbisSetting.idSession)
+        res.enqueue(object : retrofit2.Callback<ResponseBody> {
 
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                val arrayBytes = response.body()!!.bytes()
+                val myString = String(arrayBytes)
+                Log.i("MyResult",myString)
+                _isSuccess.value = arrayBytes
 
+            }
 
-    override fun onCleared() {
-        compositeDisposable.dispose()
-        super.onCleared()
-    }
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.i("MyResult",t.toString())
+            }
 
+        })
 
-    fun getFile(EdoApi: ApiEdo?, data : String){
-        Log.i("MyResult",data)
-        EdoApi?.let { EdoApi ->
-            val disposable =EdoApi.getFile(data,SbisSetting.idSession)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    Log.i("MyResult","it")
-
-                    Log.i("MyResult",it.toString())
-
-                    //_selected.postValue(it)
-                },{
-                    Log.i("MyResult","throwable")
-                    Log.i("MyResult",it.toString())
-                })
-        }
     }
 
 
