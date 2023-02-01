@@ -9,12 +9,13 @@ data class Document(
     val id : String,
     val name : String,
     val nomber: String,
-    val Direction: String,
+    val direction: String,
     val Subtype: String,
-    val HTML: String,
-    val Sum: String,
-    val Type: String,
+    val lincksOfHTML : MutableMap<String, String>,
+    var files : MutableList<InnerFile>, //MutableMap<String, ByteArray>,
 
+    val sum: String,
+    val type: String,
     val data : String,
     val status : String,
     val partner : String

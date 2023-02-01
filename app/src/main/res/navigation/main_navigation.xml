@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/documentsList"
-        android:name="com.example.tensor_api_edo.presentation.documents_view.DocumentsList"
+        android:name="com.example.tensor_api_edo.presentation.documents_view.list_doc.DocumentsList"
         android:label="DocumentsList" >
         <action
             android:id="@+id/action_documentsList_to_documentInfoFragment"
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/documentInfoFragment"
-        android:name="com.example.tensor_api_edo.presentation.documents_view.DocumentInfoFragment"
+        android:name="com.example.tensor_api_edo.presentation.documents_view.info_doc.DocumentInfoFragment"
         android:label="DocumentInfoFragment" >
         <argument
             android:name="document"

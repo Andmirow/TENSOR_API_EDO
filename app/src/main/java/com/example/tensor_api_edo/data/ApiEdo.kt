@@ -20,7 +20,7 @@ interface ApiEdo {
     @GET
     //@Headers("Content-Type: charset=windows-1251 Accept:*/*")
     @Headers("Content-Type: application/json-rpc;charset=windows-1251")
-    fun getFile(@Url url : String, @Header("X-SBISSessionID")token : String) : Call<ResponseBody>// Single<String>
+    fun getFile(@Url url : String, @Header("X-SBISSessionID")token : String) :  Call<ResponseBody>
 
 
 }

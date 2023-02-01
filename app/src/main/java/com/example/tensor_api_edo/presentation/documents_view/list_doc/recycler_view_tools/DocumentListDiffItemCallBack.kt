@@ -1,7 +1,6 @@
-package com.example.tensor_api_edo.presentation.documents_view.recycler_view_tools
+package com.example.tensor_api_edo.presentation.documents_view.list_doc.recycler_view_tools
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.tensor_api_edo.data.document_model.Документ
 import com.example.tensor_api_edo.domain.Document
 
 

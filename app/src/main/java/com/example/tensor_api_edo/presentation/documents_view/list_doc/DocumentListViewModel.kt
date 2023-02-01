@@ -1,4 +1,4 @@
-package com.example.tensor_api_edo.presentation.documents_view
+package com.example.tensor_api_edo.presentation.documents_view.list_doc
 
 import android.app.Application
 import android.util.Log
@@ -8,14 +8,11 @@ import androidx.lifecycle.MutableLiveData
 import com.example.tensor_api_edo.data.ApiEdo
 import com.example.tensor_api_edo.data.FilterModel
 import com.example.tensor_api_edo.data.TensorQuery
-import com.example.tensor_api_edo.data.document_model.Result
-import com.example.tensor_api_edo.data.document_model.Реестр
 import com.example.tensor_api_edo.data.document_model.Фильтр
 import com.example.tensor_api_edo.di.DaggerEdoComponent
 import com.example.tensor_api_edo.domain.Document
 import com.example.tensor_api_edo.domain.MapperDocuments
 import com.example.tensor_api_edo.domain.SbisSetting
-import com.google.gson.internal.LinkedTreeMap
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

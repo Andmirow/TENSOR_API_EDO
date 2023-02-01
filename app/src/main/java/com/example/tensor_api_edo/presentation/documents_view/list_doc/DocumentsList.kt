@@ -1,4 +1,4 @@
-package com.example.tensor_api_edo.presentation.documents_view
+package com.example.tensor_api_edo.presentation.documents_view.list_doc
 
 import android.content.Context
 import android.os.Bundle
@@ -13,7 +13,8 @@ import com.example.tensor_api_edo.databinding.ListDocumentsBinding
 import com.example.tensor_api_edo.domain.Document
 import com.example.tensor_api_edo.domain.MyApp
 import com.example.tensor_api_edo.presentation.FragmentControl
-import com.example.tensor_api_edo.presentation.documents_view.recycler_view_tools.DocumentAdapter
+
+import com.example.tensor_api_edo.presentation.documents_view.list_doc.recycler_view_tools.DocumentAdapter
 
 
 class DocumentsList : Fragment() {
@@ -68,7 +69,11 @@ class DocumentsList : Fragment() {
     }
 
     private fun openDocunemt(document: Document){
-        findNavController().navigate(DocumentsListDirections.actionDocumentsListToDocumentInfoFragment(document))
+        findNavController().navigate(
+            DocumentsListDirections.actionDocumentsListToDocumentInfoFragment(
+                document
+            )
+        )
     }
 
     companion object {

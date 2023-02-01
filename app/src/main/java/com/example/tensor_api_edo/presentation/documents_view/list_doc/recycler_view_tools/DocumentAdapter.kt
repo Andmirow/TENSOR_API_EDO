@@ -1,4 +1,4 @@
-package com.example.tensor_api_edo.presentation.documents_view.recycler_view_tools
+package com.example.tensor_api_edo.presentation.documents_view.list_doc.recycler_view_tools
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +8,9 @@ import com.example.tensor_api_edo.databinding.DocumentCardBinding
 import com.example.tensor_api_edo.domain.Document
 
 
-class DocumentAdapter(private val onClickListener : ((Document)-> Unit)) : ListAdapter<Document, DocumentViewHolder>(DocumentListDiffItemCallBack()) {
+class DocumentAdapter(private val onClickListener : ((Document)-> Unit)) : ListAdapter<Document, DocumentViewHolder>(
+    DocumentListDiffItemCallBack()
+) {
 
     private lateinit var binding : DocumentCardBinding
 
