@@ -7,11 +7,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.tensor_api_edo.data.ApiEdo
 import com.example.tensor_api_edo.di.DaggerEdoComponent
-import com.example.tensor_api_edo.domain.InnerFile
+import com.example.tensor_api_edo.domain.model_bl.Attachment
 import com.example.tensor_api_edo.domain.SbisSetting
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -35,66 +33,51 @@ class DocumentInfoViewModel(application : Application) : AndroidViewModel(applic
     }
 
 
-
-
 //    private val _isSuccess = MutableLiveData<ByteArray>()
 //    val isSuccess: LiveData<ByteArray>
 //        get() = _isSuccess
 
-    private val _isSuccess = MutableLiveData<InnerFile>()
-    val isSuccess: LiveData<InnerFile>
+
+    private val _isSuccess = MutableLiveData<MutableList<Attachment>>()
+    val isSuccess: LiveData<MutableList<Attachment>>
         get() = _isSuccess
 
 
-    fun getHtml(edoApi: ApiEdo, html_lincks: MutableMap<String,String>){
+
+    fun getHtml(edoApi: ApiEdo, attachments: MutableList<Attachment>){
+        for (i in attachments){
+            if (i.isFormalized){
+                val res = i.linckOfHtml?.let { edoApi.getFile(it,SbisSetting.idSession) }
+                res?.enqueue(object : retrofit2.Callback<ResponseBody> {
+                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                        val arrayBytes = response.body()?.bytes()
 
 
-        for (i in html_lincks){
-            val res = edoApi.getFile(i.value,SbisSetting.idSession)
-            res.enqueue(object : retrofit2.Callback<ResponseBody> {
-                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                    val arrayBytes = response.body()?.bytes()
-                    val innerFile = InnerFile(i.key,arrayBytes)
-//                    val myString = String(arrayBytes)
-//                    Log.i("MyResult",myString)
-                    Log.i("MyResult",innerFile.toString())
-                    _isSuccess.value = innerFile
+                        val attachment = i.copy(html = arrayBytes)
+                        Log.i("MyResult",attachment.toString())
+                        var mutList = _isSuccess.value
+                        if(mutList ==null){
+                            mutList = mutableListOf()
+                        }
+                        mutList.add(attachment)
+                        mutList.let {
+                            _isSuccess.value = it
+                            Log.i("MyResult","let")
+                        }
+                    }
 
-//                    _isSuccess.value?.add(innerFile)
-                }
+                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                        Log.i("MyResult",t.toString())
+                    }
 
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Log.i("MyResult",t.toString())
-                }
-            })
+                })
+            }else{
+
+            }
+
+
+
         }
-
-
-
-
-
-
-//        EdoApi?.let { EdoApi ->
-//            val disposable =EdoApi.getDocumentListForEvent(createParams(data,RegistryType), SbisSetting.idSession)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({
-//                    Log.i("Result1",it.toString())
-//                    val res = it.result.Реестр
-//                    val listDoc = MapperDocuments.getListDocumentFromReestr(res)
-//                    _selected.postValue(listDoc)
-//                },{
-//                    Log.i("MyResult",it.toString())
-//                })
-//        }
-
-
-
-
-
-
     }
-
-
 
 }

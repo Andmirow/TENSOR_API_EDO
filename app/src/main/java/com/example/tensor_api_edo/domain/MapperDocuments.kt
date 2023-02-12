@@ -2,17 +2,37 @@ package com.example.tensor_api_edo.domain
 
 import com.example.tensor_api_edo.data.document_model.Документ
 import com.example.tensor_api_edo.data.document_model.Реестр
+import com.example.tensor_api_edo.domain.model_bl.Attachment
+import com.example.tensor_api_edo.domain.model_bl.Document
+import com.example.tensor_api_edo.domain.model_bl.InnerFile
 
 @Suppress("NonAsciiCharacters")
 class MapperDocuments {
     companion object{
 
-        fun mapДокументToDocument(документ : Документ): Document{
+        fun mapДокументToDocument(документ : Документ): Document {
 
-            var mapFiles: MutableMap<String, String> = mutableMapOf()
-            for (i in документ.Вложение){
-                mapFiles[i.Название] = i.СсылкаНаHTML
+            var listOfAttachment = mutableListOf<Attachment>()
+
+            for (вложение in документ.Вложение){
+                val isFormat = !(вложение.СсылкаНаHTML == null || вложение.СсылкаНаHTML =="")
+
+                listOfAttachment.add(
+                    Attachment(
+                        name = вложение.Название,
+                        linckOfHtml = вложение.СсылкаНаHTML,
+                        html = null,
+                        linckOfXml = if (!isFormat) вложение.Файл.Ссылка else null,
+                        isFormalized = isFormat,
+                        file = InnerFile(вложение.Файл.Имя,null,null)
+                    )
+                )
+
+
+
+
             }
+
 
             return Document(
                 id = документ.Идентификатор,
@@ -20,8 +40,7 @@ class MapperDocuments {
                 nomber = документ.Номер,
                 direction =документ.Направление,
                 Subtype = документ.Подтип,
-                lincksOfHTML = mapFiles,
-                files = mutableListOf(),
+                attachments = listOfAttachment,
                 sum = документ.Сумма,
                 type = документ.Тип,
                 data = документ.Дата,

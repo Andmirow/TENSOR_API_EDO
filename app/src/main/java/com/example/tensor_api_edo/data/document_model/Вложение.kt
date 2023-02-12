@@ -14,7 +14,7 @@ data class Вложение(
     val Редакция: Редакция,
     val Служебный: String,
     val СсылкаВКабинет: String,
-    val СсылкаНаHTML: String,
+    val СсылкаНаHTML: String?,
     val СсылкаНаPDF: String,
     val Сумма: String,
     val СуммаБезНДС: String,

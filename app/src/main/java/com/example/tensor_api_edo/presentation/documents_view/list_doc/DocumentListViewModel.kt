@@ -10,7 +10,7 @@ import com.example.tensor_api_edo.data.FilterModel
 import com.example.tensor_api_edo.data.TensorQuery
 import com.example.tensor_api_edo.data.document_model.Фильтр
 import com.example.tensor_api_edo.di.DaggerEdoComponent
-import com.example.tensor_api_edo.domain.Document
+import com.example.tensor_api_edo.domain.model_bl.Document
 import com.example.tensor_api_edo.domain.MapperDocuments
 import com.example.tensor_api_edo.domain.SbisSetting
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -10,10 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.tensor_api_edo.databinding.ListDocumentsBinding
-import com.example.tensor_api_edo.domain.Document
+import com.example.tensor_api_edo.domain.model_bl.Document
 import com.example.tensor_api_edo.domain.MyApp
 import com.example.tensor_api_edo.presentation.FragmentControl
-
 import com.example.tensor_api_edo.presentation.documents_view.list_doc.recycler_view_tools.DocumentAdapter
 
 
@@ -37,11 +36,7 @@ class DocumentsList : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[DocumentListViewModel::class.java]
-
-        //val args = DocumentsListArgs.fromBundle(requireArguments())
         typeDocument = args.typeDocument
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -57,7 +52,7 @@ class DocumentsList : Fragment() {
 
 
     fun setRecyclerView(){
-        viewModel.getListDocument((activity?.application as MyApp).apiEdo,"",typeDocument!!)
+        viewModel.getListDocument((activity?.application as MyApp).apiEdo,"",typeDocument)
         val recycler = binding.rvListDoc
 
         val adapter = DocumentAdapter(this::openDocunemt)
@@ -75,6 +70,7 @@ class DocumentsList : Fragment() {
             )
         )
     }
+
 
     companion object {
 

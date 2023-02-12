@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.tensor_api_edo.databinding.DocumentCardBinding
-import com.example.tensor_api_edo.domain.Document
+import com.example.tensor_api_edo.domain.model_bl.Document
 
 
 class DocumentAdapter(private val onClickListener : ((Document)-> Unit)) : ListAdapter<Document, DocumentViewHolder>(

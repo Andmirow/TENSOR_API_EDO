@@ -41,6 +41,6 @@
         android:label="DocumentInfoFragment" >
         <argument
             android:name="document"
-            app:argType="com.example.tensor_api_edo.domain.Document" />
+            app:argType="com.example.tensor_api_edo.domain.model_bl.Document" />
     </fragment>
 </navigation>

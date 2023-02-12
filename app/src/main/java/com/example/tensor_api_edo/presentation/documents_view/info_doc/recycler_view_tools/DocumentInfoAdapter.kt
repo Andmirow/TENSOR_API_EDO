@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.tensor_api_edo.databinding.FileNameCardBinding
-import com.example.tensor_api_edo.domain.InnerFile
+import com.example.tensor_api_edo.domain.model_bl.Attachment
 
 
-class DocumentInfoAdapter(private val onClickListener : ((InnerFile)-> Unit)) : ListAdapter<InnerFile, DocumentInfoViewHolder>(DocumentInfoDiffItemCallBack()) {
+class DocumentInfoAdapter(private val onClickListener : ((Attachment)-> Unit)) : ListAdapter<Attachment, DocumentInfoViewHolder>(DocumentInfoDiffItemCallBack()) {
 
     private lateinit var binding : FileNameCardBinding
 

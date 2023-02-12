@@ -1,7 +1,8 @@
-package com.example.tensor_api_edo.domain
+package com.example.tensor_api_edo.domain.model_bl
 
 
 import android.os.Parcelable
+import com.example.tensor_api_edo.domain.model_bl.Attachment
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -11,9 +12,7 @@ data class Document(
     val nomber: String,
     val direction: String,
     val Subtype: String,
-    val lincksOfHTML : MutableMap<String, String>,
-    var files : MutableList<InnerFile>, //MutableMap<String, ByteArray>,
-
+    var attachments : MutableList<Attachment>,
     val sum: String,
     val type: String,
     val data : String,
